@@ -32,6 +32,8 @@ export default Ember.Object.extend(Ember.Evented, {
     */
 	prevHash: null,
 
+	geoposition: null,
+
 	/**
 	  Default options for geoPosition#getCurrentPosition.
 
@@ -159,6 +161,8 @@ export default Ember.Object.extend(Ember.Evented, {
 			}
 			this.set('prevHash', currentHash);
 		}
+		this.set('geoposition', geoposition);
+
 		// Trigger opposite coords unchanged.
 		this.trigger('geoposition', geoposition, this);
 	},

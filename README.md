@@ -1,12 +1,44 @@
-# Ember-cli-geolocation
+# ember-cli-geolocation
 
-This README outlines the details of collaborating on this Ember addon.
+Addon provides property into routes and controllers to get geo-location information (e.g. coords.)
 
 ## Installation
 
 * `git clone` this repository
 * `npm install`
 * `bower install`
+
+## Usage
+Available as mixin, you can use like that:
+```javascript
+import Ember from 'ember';
+import GeoLocationMixin from 'ember-cli-geolocation/mixins/geolocation-mixin';
+
+// Some controller
+export default Ember.Controller.extend(GeoLocationMixin, {
+
+    // Init method for example
+    init: function() {
+        this._super();
+
+        // For example use interval function (every 1s), because
+        // geolocation become available with delay
+        setInterval(Ember.$.proxy(function() {
+            // Attribute position computed by geolocation.geoposition
+            console.log(this.get('position'));
+        }), 1000);
+
+        // You can use event handlers
+        self.get('geolocation').on('geoposition', function(geoposition){
+            console.log(geoposition);
+        });
+
+        self.get('geolocation').on('error', function(){
+            console.log("SOME ERR");
+        });
+    }
+});
+```
 
 ## Running
 
@@ -22,4 +54,4 @@ This README outlines the details of collaborating on this Ember addon.
 
 * `ember build`
 
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/). Addon based on [geoPosition](https://github.com/estebanav/javascript-mobile-desktop-geolocation).
