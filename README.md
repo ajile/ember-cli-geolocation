@@ -4,9 +4,9 @@ Addon provides property into routes and controllers to get geo-location informat
 
 ## Installation
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+```
+npm install --save-dev ember-cli-geolocation
+```
 
 ## Usage
 Available as mixin, you can use like that:
