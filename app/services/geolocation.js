@@ -81,6 +81,7 @@ export default Ember.Object.extend(Ember.Evented, {
     */
 	start: function() {
 		this._indent();
+		return this;
 	},
 
 	/**
@@ -89,9 +90,32 @@ export default Ember.Object.extend(Ember.Evented, {
       @method start
     */
 	stop: function() {
+		this.set('_prevHash', null);
 		// Prevent future call
 		clearInterval(this.get('_timer'));
 		return this;
+	},
+
+	/**
+      Stop and start.
+      
+      @method restart
+    */
+	restart: function() {
+		return this.stop().start();
+	},
+
+	/**
+      Returns current geoposition.
+      
+      @method getGeoposition
+    */
+	getGeoposition: function() {
+		var options = this.get('options');
+
+		return new Promise(function(resolve, reject) {
+			geoPosition.getCurrentPosition(resolve, reject, options);
+		});
 	},
 
 	/**

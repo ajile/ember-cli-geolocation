@@ -24,25 +24,22 @@ test('it contain methods', function() {
 });
 
 test('it evented object', function() {
-  // var service = this.subject();
-  // var done = false;
-  // service.on('test', function() {
-  //   // ok(true, "event occures");
-  //   done = true;
-  // });
+  var service = this.subject();
+  expect(1);
 
-  // andThen(function() {
-  //   ok(find("#post"), "A post exists");
-  // });
+  service.on('test', function() {
+  	ok(true, "event occured");
+  });
 
-  ok(true);
+  service.trigger('test');
 });
 
+// test('it returns an GeoPosition Object more then 3 times', function() {
+// 	expect(1);
+// 	var service = this.subject();
 
-// Replace this with your real tests.
-// test('it returns an GeoPosition Object after 500>=x>=1000 ms', function() {
-//   var service = this.subject();
-//   service.start();
-//   ok(typeof service.start === "function", "start method exists" );
-//   ok(typeof service.stop === "function", "stop method exists" );
+// 	service.getGeoposition().then(function() {
+// 		console.log(123);
+// 		ok(true);
+// 	});
 // });
