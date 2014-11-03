@@ -4,7 +4,8 @@ var EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
 var app = new EmberAddon();
 
-app.import('bower_components/geoPosition/js/geoPosition.js');
+// app.import('bower_components/geoPosition/js/geoPosition.js');
+app.import('vendor/geoPosition.js');
 
 // Use `app.import` to add additional libraries to the generated
 // output files.
