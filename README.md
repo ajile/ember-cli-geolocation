@@ -1,4 +1,4 @@
-# ember-cli-geolocation
+# ember-cli-geolocation [![Build Status](https://secure.travis-ci.org/ajile/ember-cli-geolocation.svg)](http://travis-ci.org/ajile/ember-cli-geolocation)
 
 Addon provides property into routes and controllers to get geo-location information (e.g. coords.)
 
