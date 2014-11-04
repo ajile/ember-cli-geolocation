@@ -22,15 +22,18 @@ export default Ember.Controller.extend(GeoLocationMixin, {
     init: function() {
         this._super();
 
+        // Begin geo location inquiry
+        this.get('geolocation').start();
+
         // For example use interval function (every 1s), because
         // geolocation become available with delay
         setInterval(Ember.$.proxy(function() {
             // Attribute position computed by geolocation.geoposition
             console.log(this.get('position'));
-        }), 1000);
+        }, this), 1000);
 
         // You can use event handlers
-        self.get('geolocation').on('geoposition', function(geoposition){
+        self.get('geolocation').on('change', function(geoposition){
             console.log(geoposition);
         });
 
