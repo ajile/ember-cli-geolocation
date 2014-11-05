@@ -116,7 +116,7 @@ export default Ember.Object.extend(Ember.Evented, {
     getGeoposition: function() {
         var options = this.get('options');
 
-        return new Promise(function(resolve, reject) {
+        return new Ember.RSVP.Promise(function(resolve, reject) {
             geoPosition.getCurrentPosition(resolve, reject, options);
         });
     },
