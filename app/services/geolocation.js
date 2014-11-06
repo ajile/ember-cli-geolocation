@@ -19,7 +19,7 @@ export default Ember.Object.extend(Ember.Evented, {
       @type Number
       @default 5000
     */
-    interval: 1000,
+    interval: 5000,
 
     /**
       Preview result. Compired with current result to prevent
@@ -32,6 +32,12 @@ export default Ember.Object.extend(Ember.Evented, {
     */
     prevHash: null,
 
+    /**
+      Last geoposition
+
+      @property geoposition
+      @type Object
+    */
     geoposition: null,
 
     /**
@@ -112,6 +118,7 @@ export default Ember.Object.extend(Ember.Evented, {
       Returns current geoposition.
       
       @method getGeoposition
+      @return {Ember.RSVP.Promise}
     */
     getGeoposition: function() {
         var options = this.get('options');
@@ -130,21 +137,21 @@ export default Ember.Object.extend(Ember.Evented, {
 
         var options = this.get('options');
 
-        var success = Ember.$.proxy(function() {
+        var success = Ember.run.bind(this, function() {
             // Invoke success method
             this.success.apply(this, arguments);
 
             // Continue ticking
-            this.get('options.breakOnFallback') || this._indent();
-        }, this);
+            this._indent();
+        });
 
-        var fallback = Ember.$.proxy(function() {
+        var fallback = Ember.run.bind(this, function() {
             // Invoke fallback method
             this.fallback.apply(this, arguments);
 
-            // Continue ticking
+            // Continue ticking if breakOnFallback doesn't setted
             this.get('options.breakOnFallback') || this._indent();
-        }, this);
+        });
 
         // Ordering geoposition information into `success` method
         geoPosition.getCurrentPosition(success, fallback, options);
@@ -195,7 +202,7 @@ export default Ember.Object.extend(Ember.Evented, {
       @method _indent
     */
     _indent: function() {
-        var fn = Ember.$.proxy(this.tick, this);
+        var fn = Ember.run.bind(this, this.tick);
         var ms = this.get('interval');
         var timer = setTimeout(fn, ms);
         this.set('_timer', timer);
