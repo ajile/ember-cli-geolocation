@@ -70,7 +70,7 @@ export default Ember.Object.extend(Ember.Evented, {
     init: function() {
 
         // If geoPosition doen't exists throw an error in development mode
-        Ember.assert('Must install `geoPosition` dependency', typeof geoPosition === "object");
+        Ember.assert('Must install `geoPosition` dependency', Ember.typeOf(geoPosition) === "object");
 
         // Is geoPosiion available
         if (geoPosition.init()) {
