@@ -169,7 +169,10 @@ export default Ember.Object.extend(Ember.Evented, {
             }
             this.set('prevHash', currentHash);
         }
-        this.set('geoposition', geoposition);
+
+        try {
+            this.set('geoposition', geoposition);
+        } catch (e) {}
 
         // Trigger opposite coords unchanged.
         this.trigger('change', geoposition, this);
