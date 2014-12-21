@@ -34,11 +34,11 @@ export default Ember.Controller.extend(GeoLocationMixin, {
         }), 1000);
 
         // You can use event handlers
-        self.get('geolocation').on('change', function(geoposition){
+        this.get('geolocation').on('change', function(geoposition){
             console.log(geoposition);
         });
 
-        self.get('geolocation').on('error', function(){
+        this.get('geolocation').on('error', function(){
             console.log("SOME ERR");
         });
 
