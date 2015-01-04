@@ -13,7 +13,7 @@ ember generate ember-cli-geolocation
 Available as mixin, you can use like that:
 ```javascript
 import Ember from 'ember';
-import GeoLocationMixin from 'ember-cli-geolocation/mixins/geolocation-mixin';
+import GeoLocationMixin from '{YOUR PROJECTS NAME}/mixins/geolocation-mixin';
 
 // Some controller
 export default Ember.Controller.extend(GeoLocationMixin, {
